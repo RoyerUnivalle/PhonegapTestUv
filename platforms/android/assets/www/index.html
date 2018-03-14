@@ -39,20 +39,22 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
     <title>Hello World</title>
 </head>
-
+<!--https://getbootstrap.com/docs/3.3/components/-->
 <body>
-    <div class="app">
-        <h1>PhoneGap</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device Ready</p>
-			<input type="text" id="numero" font-size="14"/>
-			<button id="saludar" type="button" onclick="javascript:onDeviceReady();">Saludar</button>
+    <div class="container alert alert-success">
+        <div id="deviceready" class="alert alert-alert">
+			<input type="text" class="form-control" placeholder="Search" id="numero" font-size="14"/>
+			<br>
+			<button class="btn btn-success" id="btnContactos" type="button" onclick="javascript:onDeviceReady();">Contactos?</button>
+			<button class="btn btn-danger" id="btnConnect" type="button" onclick="javascript:onDeviceReady();">Conectado?</button>
+			<button class="btn btn-warning" id="btnNavegar" type="button" title="Ir a home" onclick="window.location.href='home.html'">Navegar</button>
+			<button class="btn btn-info" id="btnServicio" type="button" title="Traer Estudiantes" onclick="window.location.href='http://localhost/Alumnos/obtener_alumnos.php'">Servicio</button>
         </div>
-		<div>
-		<table id="tablita" border="1">
+		<div class="container" role="alert">
+		<table class="table" id="tablita">
 		<tr>
 		<td>Nombre</td>
 		<td>Telefono</td>
@@ -62,13 +64,14 @@
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 // device APIs are available
 
 			function onDeviceReady() {
 			alert('hola');
                 var options = new ContactFindOptions();
-				var telefono=document.getElementById("number").value;
+				var telefono=document.getElementById("numero").value;
 				var fields = ["displayName", "name"];
 				if(telefono.length>0){
 				options.filter = telefono;
@@ -81,9 +84,9 @@
             }
             // onSuccess: Get a snapshot of the current contacts
             function onSuccess(contacts) {
-			//console.log("Contactos = " + contacts.length);
+			console.log("Contactos = " + contacts.length);
 			alert('cantidad:'+contacts.length);
-                /*var table = document.getElementById("myTable");
+                var table = document.getElementById("tablita");
 				for (var i = 0; i < contacts.length; i++) {
                     console.log("Display Name = " + contacts[i].displayName);
 					var row = table.insertRow(0);
@@ -91,7 +94,7 @@
 					var cell2 = row.insertCell(1);
 					cell1.innerHTML = "Name";
 					cell2.innerHTML = contacts[i].displayName;
-                }*/
+                }
             }
             // onError: Failed to get the contacts
             function onError(contactError) {
