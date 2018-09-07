@@ -132,6 +132,12 @@
 	<script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
 	
 	<script type="text/javascript">
+	$( document ).bind( "mobileinit", function() {
+    // Make your jQuery Mobile framework configuration changes here!
+
+    $.mobile.allowCrossDomainPages = true;
+	$.support.cors=true;
+	});
 	function navegar(){
 	alert("hola");
 	}
