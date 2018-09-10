@@ -50,7 +50,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
+    <allow-navigation href="data:*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
